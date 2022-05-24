@@ -1,0 +1,64 @@
+import java.util.Scanner;
+public class Complementaria {
+    Bicho b1 = new Bicho();
+    Scanner teclado=new Scanner(System.in);
+
+    public void iniciarMenu(){
+
+        System.out.println("Si desea iniciar el juego presione 1");
+        int iniciar=teclado.nextInt();
+        b1.almacenarBichos();
+        while(true){
+
+            System.out.println("\nCon respecto al tablero anterior podra ejecutar las siguientes acciones\n"
+                + "1.Disminuir en 5 la vida del bicho que desee\n"
+                + "2.Lanzara una bomba atomica, esta asesinara a un bicho en cualquier posicion\n"
+                + "3.Duplicara la salud del bicho con menos vida\n"
+                + "4.Cambiara la posición de 2 bichos aleatoriamente\n"
+                + "5.Cambiara al bicho con menor salud a tipo espacial\n"
+                + "6.Matara a todos los bichos de una fila aleatoria\n"
+                + "7.Le mostrará el promedio de vida de los bichos vivos\n"
+                + "8.le mostrará una frase enviada por su abuela, para que no te rindas :)\n");
+
+            int condición =teclado.nextInt();
+
+            switch(condición){
+
+                case 1:
+                    System.out.println("A continuacion ingrese la posición del bicho al que desee bajarle la vida");
+                    int pos1=teclado.nextInt();
+                    int pos2=teclado.nextInt();
+                    b1.bajarVida(pos2, pos2);
+                    System.out.println("Disminuyó en 5 la vida del bicho seleccionado");
+                    b1.mostrarTabla();
+                    break;   
+                case 2:
+                    b1.matarBicho();
+                    b1.mostrarTabla();
+                    break;
+                case 3:
+                    b1.duplicarVida();
+                    b1.mostrarTabla();
+                    break;
+                case 4:
+                    b1.cambiarBicho();
+                    b1.mostrarTabla();
+                    break;    
+                case 5:
+                    b1.cambiarTipo();
+                    b1.mostrarTabla();
+                    break;
+                case 6:
+                    b1.matarlinea();
+                    b1.mostrarTabla();
+                    break;
+                case 7:
+                    b1.promedio();
+                    break;
+                case 8:
+                    b1.almacenarFrases();
+                    break;
+            }
+        }
+    }
+}
