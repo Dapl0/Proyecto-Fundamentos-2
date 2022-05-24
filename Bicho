@@ -1,0 +1,192 @@
+import java.util.Random;
+public class Bicho {
+    private int salud;
+    Random random = new Random();
+    private Bicho[][] Bichos = new Bicho[3][3];
+
+    public int getSalud() {
+        return salud;
+    }
+
+    public void setSalud(int salud) {
+        this.salud = salud;
+    }
+
+    public Bicho[][] getBichos() {
+        return Bichos;
+    }
+
+    public void setBichos(Bicho[][] Bichos) {
+        this.Bichos = Bichos;
+    }
+
+    public void almacenarBichos(){
+
+     
+        int random1 = random.nextInt(10);
+        if(random1 == 0){ 
+            random1++;
+        }
+
+        for(int i = 1; i <= random1; i++){
+            int random2 = random.nextInt(4);
+            if(random2 == 0){
+                random2++;
+            }
+            NumeroAleatorio:
+            switch(random2){
+                case 1:
+                    for1:
+                    for(int j = 0; j < Bichos.length; j++){
+                        for(int p = 0; p < Bichos[j].length; p++){
+                            if(Bichos[j][p] == null){
+                                BichoNormal b1 = new BichoNormal();
+                                Bichos[j][p] = b1;
+                                break for1;
+                            }
+                        }
+                    }
+                    break NumeroAleatorio;
+                case 2:
+                    for2:
+                    for(int z = 0; z < Bichos.length; z++){
+                        for(int x = 0; x < Bichos[z].length; x++){
+                            if(Bichos[z][x] == null){
+                                BichoAlien b2 = new BichoAlien();
+                                Bichos[z][x] = b2;
+                                break for2;
+                            }
+                        }
+                    }
+                    break NumeroAleatorio;
+                case 3:
+                    for3:
+                    for(int m = 0; m < Bichos.length; m++){
+                        for(int n = 0; n < Bichos[m].length; n++){
+                            if(Bichos[m][n] == null){
+                                BichoEspacial b3 = new BichoEspacial();
+                                Bichos[m][n] = b3;
+                                break for3;
+                            }  
+                        }
+                    }
+                    break NumeroAleatorio;
+            }
+
+        }
+        mostrarTabla();
+    }
+
+    public void mostrarTabla(){
+        System.out.println("---------------------");
+        for(int a = 0; a < Bichos.length; a++){
+            for(int b = 0; b < Bichos[a].length; b++){
+                System.out.print("|"+Bichos[a][b]+"|");
+            }
+            System.out.print("\n");
+        }
+        System.out.println("---------------------");
+    }
+
+    public void bajarVida(int a,int b){
+        Bichos[a][b].setSalud(Bichos[a][b].getSalud()-5);
+    }
+
+    public void matarBicho(){
+        int p1=random.nextInt(3);
+        int p2=random.nextInt(3);
+        Bichos[p1][p2].setSalud(0);
+        System.out.println("Se elimino el bicho de la pocición "+p1+" "+p2);
+    }
+
+    public void duplicarVida(){
+        int acumulador=Bichos[0][0].getSalud();
+        for(int i=0;i<Bichos.length;i++){
+            for(int j=0;j<Bichos[i].length;j++){
+                if(Bichos[i][j]!=null){      
+                    if(acumulador > Bichos[i][j].getSalud())  {
+                        acumulador=Bichos[i][j].getSalud();
+                    }
+                }
+            }
+        }
+        for(int p=0;p<Bichos.length;p++){
+            for(int z=0;z<Bichos[p].length;z++){
+                if(Bichos[p][z]!=null){
+                    if(Bichos[p][z].getSalud()==acumulador){
+                        Bichos[p][z].setSalud((Bichos[p][z].getSalud())*2);
+                        System.out.println("Se duplico la salud del bicho en la posición"+ z+" "+p);
+                    }
+                }
+            }
+
+        }
+    }
+
+    public void almacenarFrases(){
+        String[] frase ={"No tenemos mucho tiempo en la vida para hacer las cosas que realmente disfrutamos, el que no arriesga no gana, toca tirarles a los bichos de forma estratégica para lograr matarlos rápido y que nos quede tiempo para hacer cosas importantes en la vida.","Es divertido matar bichos cuando ya eres viejo, ya que no tienes más cosas que hacer….","¡¡¡Muerte a los bichos!!! ¡¡¡Saquen el raid!!!"};
+        int r1=random.nextInt(3);
+        System.out.println(frase[r1]);
+    }
+
+    public void cambiarBicho(){
+
+        int r1=random.nextInt(3);
+        int r2=random.nextInt(3);
+        int r3=random.nextInt(3);
+        int r4=random.nextInt(3);
+
+        Bicho b1=Bichos[r1][r2];
+        Bichos[r1][r2]=Bichos[r3][r4];
+        Bichos[r3][r4]=b1;
+
+        System.out.println("Se cambio el bicho que estaba en la pocisión "+ r1 +" "+ r2 +" por el que estaba en la posición "+ r3 +" "+ r4);
+    }
+
+    public void cambiarTipo(){
+        int acumulador=Bichos[0][0].getSalud();
+        for(int i=0;i<Bichos.length;i++){
+            for(int j=0;j<Bichos[i].length;j++){
+                if(Bichos[i][j]!=null){      
+                    if(acumulador > Bichos[i][j].getSalud())  {
+                        acumulador=Bichos[i][j].getSalud();
+                    }
+                }
+            }
+        }
+        for(int p=0;p<Bichos.length;p++){
+            for(int z=0;z<Bichos[p].length;z++){
+                if(Bichos[p][z]!=null){
+                    if(Bichos[p][z].getSalud()==acumulador){
+                        BichoEspacial b1=new BichoEspacial(Bichos[p][z].getSalud());
+                        Bichos[p][z]=b1;
+                    }
+                }
+            }
+        }
+    }
+
+    public void matarlinea(){
+        int n=random.nextInt(3);
+        for(int i=0;i<Bichos.length;i++){
+            if(Bichos[i][n]!= null){
+                Bichos[i][n].setSalud(0);
+            }
+        }
+    }
+
+    public void promedio(){
+        int acumulador=0;
+        int cont=0;
+
+        for(int i=0;i<Bichos.length;i++){
+            for(int j=0;j<Bichos[i].length;j++){
+                if(Bichos[i][j]!=null){      
+                    acumulador=acumulador+Bichos[i][j].getSalud();  
+                    cont++;
+                }
+            }
+        }
+        System.out.println("El promedio de vida de todos los zombies hasta el momento es: " +(acumulador/cont));
+    }
+}
