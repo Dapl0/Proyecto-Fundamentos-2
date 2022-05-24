@@ -1,0 +1,24 @@
+public class BichoNormal extends Bicho{
+
+    private int salud = 10;
+
+    public BichoNormal() {
+    }
+
+    public BichoNormal(int salud) {
+        this.salud=salud;
+    }
+
+    public int getSalud() {
+        return salud;
+    }
+
+    public void setSalud(int salud) {
+        this.salud = salud;
+    }
+
+    @Override
+    public String toString() {
+        return "BN-"+ this.salud;
+    }
+}
